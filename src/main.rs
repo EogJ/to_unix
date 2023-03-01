@@ -21,7 +21,7 @@ fn get_first_arg() -> Result<OsString, Box<dyn Error>> {
 }
 
 impl ToUnix {
-    fn is_ascii(contents: String) -> bool {
+    fn is_ascii(contents: &str) -> bool {
         let mut ascii = true;
         for c in contents.chars() {
             let code = c as i32;
@@ -33,7 +33,7 @@ impl ToUnix {
         ascii
     }
 
-    fn is_dos_eol(contents: String) -> bool {
+    fn is_dos_eol(contents: &str) -> bool {
         let mut dos_eol = false;
         for c in contents.chars() {
             if c == '\r' {
@@ -44,7 +44,7 @@ impl ToUnix {
         dos_eol
     }
 
-    fn to_unix_line_endings(contents: String) -> Vec<String> {
+    fn to_unix_line_endings(contents: &str) -> Vec<String> {
         let mut ucontents = Vec::new();
         for c in contents.chars() {
             if c != '\r' {
@@ -58,11 +58,11 @@ impl ToUnix {
         let mut input = File::open(filename).unwrap();
         let mut contents = String::new();
         let _ = input.read_to_string(&mut contents);
-        let ascii = ToUnix::is_ascii(contents.clone());
-        let dos_eol = ToUnix::is_dos_eol(contents.clone());
+        let ascii = ToUnix::is_ascii(&contents);
+        let dos_eol = ToUnix::is_dos_eol(&contents);
 
         if ascii && dos_eol {
-            let converted = ToUnix::to_unix_line_endings(contents.clone());
+            let converted = ToUnix::to_unix_line_endings(&contents);
             let mut w = File::create(filename).unwrap();
             let _ = w.write_all(converted.join("").as_bytes());
         }
