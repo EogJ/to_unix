@@ -12,3 +12,5 @@ I keep the script in `~/tools/` and have this in my .zshrc `'alias to_unix='fn()
 Then in my terminal I can run: `to_unix file.csv` to correct the file.
 
 Just a heads up - It overwrites the files contents.
+
+Hope it solves your problem!
