@@ -1,6 +1,6 @@
 Hi Kerry,
 
-It's a rust file so you just need the binary - for an Intel mac its here: `target/release/x86_64-apple-darwin/release/to_unix`.
+It's a rust file so you just need the binary - I've included one for an intel mac.
 
 I don't have a mac developer licence so:
 
